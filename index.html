@@ -47,8 +47,8 @@
     .attendance-stat .num { font-size:clamp(34px,10vw,54px); line-height:1.15; margin:5px 0; }
     .attendance-stat .label { font-size:14px; }
     .counter-area { min-height:48vh; display:flex; flex-direction:column; gap:12px; }
-    .count-button { flex:1; min-height:230px; width:100%; border:0; border-radius:20px; background:#2563eb; color:white; font-size:clamp(27px,7vw,38px); font-weight:800; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; box-shadow:0 5px 0 #1746a2; touch-action:manipulation; }
-    .count-button:active { transform:translateY(2px); box-shadow:0 3px 0 #1746a2; }
+    .count-button { flex:1; min-height:230px; width:100%; border:0; border-radius:20px; background:#2563eb; color:white; font-size:clamp(27px,7vw,38px); font-weight:800; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; box-shadow:none; touch-action:manipulation; }
+    .count-button:active { transform:translateY(2px); box-shadow:none; }
     .count-button:disabled { opacity:.45; box-shadow:none; }
     .count-sub { font-size:15px; font-weight:500; }
     .counter-actions { display:flex; gap:8px; }
@@ -70,12 +70,10 @@
       <div class="stat"><span class="num" id="used">0</span><span class="label">使用</span></div>
       <div class="stat"><span class="num" id="empty">126</span><span class="label">空席</span></div>
     </section>
-    <div><strong>操作モード</strong></div>
     <div class="toolbar">
       <button class="mode active" id="paint" type="button" aria-pressed="true">使用</button>
       <button class="mode" id="erase" type="button" aria-pressed="false">空席</button>
     </div>
-    <p class="hint">座席番号をタッチして使用・空席を切り替えます。</p>
     <div class="seat-wrap"><div class="seat-grid" id="grid" aria-label="座席一覧"></div></div>
     <div class="legend">
       <span><i class="swatch" style="background:white"></i>空席</span>
@@ -98,7 +96,7 @@
         <span class="label">人</span>
       </div>
     </div>
-    <p class="hint">総座席数126席 − 空席カウント ＝ 出席人数</p>
+    <p class="hint">総座席数126</p>
     <div class="counter-area">
       <button class="count-button" id="countVacancy" type="button">空席カウント</button>
       <div class="counter-actions">
@@ -177,7 +175,7 @@
   const blank = document.createElement("div");
   grid.appendChild(blank);
   for (let c=0;c<COLS;c++) {
-    const h=document.createElement("div"); h.className="colhead"; h.textContent=FIRST_SEAT+c; grid.appendChild(h);
+    const h=document.createElement("div"); h.className="colhead"; grid.appendChild(h);
   }
   for (let r=1;r<=ROWS;r++) {
     const rh=document.createElement("div"); rh.className="rowhead"; rh.textContent=r; grid.appendChild(rh);
